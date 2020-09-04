@@ -34,7 +34,6 @@ print(y_test.shape)
 
 
 
-# y_test =
 # 无批处理
 # sigmoid函数,激活函数
 def sigmoid(x):
@@ -48,7 +47,20 @@ def softmax(x):
     softmax_x = exp_x/np.sum(exp_x)
     return softmax_x
 
-# def predict
-
-
 print(change_one_hot_label(np.array([6])))
+
+# 批处理版本
+# np.tile 复制
+def softmax_batch(x):
+    max_x = np.max(x, axis=1)
+    exp_x = np.exp(x-np.tile(max_x, (x.shape[1], 1)).T)
+    sum_x = np.sum(exp_x, axis=1)
+    return exp_x/(np.tile(sum_x, (x.shape[0], 1))).T
+
+print(x_test.shape)
+print(x_test.shape[1])
+print(np.tile(x_test, (x_test.shape[1], 1)).T.shape)
+# print(np.tile(x_test, (x_test.shape[1], 1)).T))
+
+y = softmax_batch(x_test)
+# print("y:", y)
