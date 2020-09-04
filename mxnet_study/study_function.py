@@ -57,10 +57,10 @@ def softmax_batch(x):
     sum_x = np.sum(exp_x, axis=1)
     return exp_x/(np.tile(sum_x, (x.shape[0], 1))).T
 
-print(x_test.shape)
-print(x_test.shape[1])
-print(np.tile(x_test, (x_test.shape[1], 1)).T.shape)
-# print(np.tile(x_test, (x_test.shape[1], 1)).T))
 
 y = softmax_batch(x_test)
-# print("y:", y)
+print("y:", y)
+
+
+
+
